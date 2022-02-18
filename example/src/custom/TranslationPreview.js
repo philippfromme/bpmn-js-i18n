@@ -2,9 +2,9 @@ import ISO from 'iso-639-1';
 
 const HIGH_PRIORITY = 5000;
 
-export default class BpmnInternationalizationUI {
-  constructor(bpmnInternationalization, canvas, eventBus) {
-    this._bpmnInternationalization = bpmnInternationalization;
+export default class TranslationPreview {
+  constructor(canvas, eventBus, translator) {
+    this._translator = translator;
 
     this._container = null;
     this._select = null;
@@ -36,7 +36,7 @@ export default class BpmnInternationalizationUI {
     const select = this._select = document.createElement('select');
 
     // TODO: fix, not working
-    const selectedLanguage = this._bpmnInternationalization.getLanguages().indexOf(this._bpmnInternationalization.getLanguage());
+    const selectedLanguage = this._translator.getLanguages().indexOf(this._translator.getLanguage());
 
     select.selectedIndex = selectedLanguage;
 
@@ -45,10 +45,10 @@ export default class BpmnInternationalizationUI {
     select.addEventListener('change', ({ target }) => {
       const { value: language } = target;
 
-      this._bpmnInternationalization.translateDiagram(language);
+      this._translator.translateDiagram(language);
     });
 
-    this._bpmnInternationalization.getLanguages().forEach(language => {
+    this._translator.getLanguages().forEach(language => {
       const option = document.createElement('option');
 
       option.value = language;
@@ -61,8 +61,8 @@ export default class BpmnInternationalizationUI {
   }
 }
 
-BpmnInternationalizationUI.$inject = [
-  'bpmnInternationalization',
+TranslationPreview.$inject = [
   'canvas',
-  'eventBus'
+  'eventBus',
+  'translator'
 ];

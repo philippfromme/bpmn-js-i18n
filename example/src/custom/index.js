@@ -1,6 +1,6 @@
-import BpmnInternationalizationPreview from './BpmnInternationalizationPreview';
+import TranslationPreview from './TranslationPreview';
 
 export default {
-  __init__: [ 'bpmnInternationalizationPreview' ],
-  bpmnInternationalizationPreview: [ 'type', BpmnInternationalizationPreview ]
+  __init__: [ 'translationPreview' ],
+  translationPreview: [ 'type', TranslationPreview ]
 };

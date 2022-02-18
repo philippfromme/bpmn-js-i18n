@@ -8,10 +8,10 @@ import {
 
 import BpmnI18nSchema from 'bpmn-i18n-moddle/resources/bpmn-i18n.json';
 
-import BpmnInternationalizationModelerModule from '../../lib/modeler';
-import BpmnInternationalizationViewerModule from '../../lib/viewer';
+import ModelerModule from '../../lib/modeler';
+import ViewerModule from '../../lib/viewer';
 
-import BpmnInternationalizationPreviewModule from './custom';
+import PreviewModule from './custom';
 
 import fileDrop from 'file-drops';
 
@@ -57,7 +57,7 @@ const ExampleModule = {
 const modeler = new BpmnModeler({
   container: '#container',
   additionalModules: [
-    BpmnInternationalizationModelerModule,
+    ModelerModule,
     BpmnPropertiesPanelModule,
     BpmnPropertiesProviderModule,
     ExampleModule
@@ -122,8 +122,8 @@ openPreview.addEventListener('click', async () => {
   viewer = new BpmnViewer({
     container: previewContainer,
     additionalModules: [
-      BpmnInternationalizationPreviewModule,
-      BpmnInternationalizationViewerModule
+      PreviewModule,
+      ViewerModule
     ],
     keyboard: {
       bindTo: document

@@ -1,4 +1,4 @@
-import BpmnInternationalizationViewerModules from 'lib/viewer';
+import ViewerModule from 'lib/viewer';
 import NavigatedViewer from 'bpmn-js/lib/NavigatedViewer';
 
 import BpmnI18nSchema from 'bpmn-i18n-moddle/resources/bpmn-i18n.json';
@@ -9,7 +9,7 @@ import {
 } from 'test/TestHelper';
 
 
-describe('viewer extension', function() {
+describe('viewer - Translator', function() {
 
   describe('basic', function() {
 
@@ -18,7 +18,7 @@ describe('viewer extension', function() {
     beforeEach(bootstrapViewer(diagram, {
       additionalModules: [
         ...(NavigatedViewer.prototype._modules),
-        BpmnInternationalizationViewerModules
+        ViewerModule
       ],
       moddleExtensions: {
         i18n: BpmnI18nSchema
@@ -26,43 +26,43 @@ describe('viewer extension', function() {
     }));
 
 
-    it('should get language', inject(function(bpmnInternationalization) {
+    it('should get language', inject(function(translator) {
 
       // when
-      const language = bpmnInternationalization.getLanguage();
+      const language = translator.getLanguage();
 
       // then
       expect(language).to.eql('en');
     }));
 
 
-    it('should get all languages', inject(function(bpmnInternationalization) {
+    it('should get all languages', inject(function(translator) {
 
       // when
-      const languages = bpmnInternationalization.getLanguages();
+      const languages = translator.getLanguages();
 
       // then
       expect(languages).to.eql([ 'en', 'de' ]);
     }));
 
 
-    it('should get default language', inject(function(bpmnInternationalization) {
+    it('should get default language', inject(function(translator) {
 
       // when
-      const defaultLanguage = bpmnInternationalization.getDefaultLanguage();
+      const defaultLanguage = translator.getDefaultLanguage();
 
       // then
       expect(defaultLanguage).to.eql('en');
     }));
 
 
-    it('should translate diagram', inject(function(bpmnInternationalization) {
+    it('should translate diagram', inject(function(translator) {
 
       // when
-      bpmnInternationalization.translateDiagram('de');
+      translator.translateDiagram('de');
 
       // then
-      const language = bpmnInternationalization.getLanguage();
+      const language = translator.getLanguage();
 
       expect(language).to.eql('de');
     }));
