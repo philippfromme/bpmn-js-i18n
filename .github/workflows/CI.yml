@@ -29,7 +29,7 @@ jobs:
       run: npm ci
     - name: Build
       env:
-        COVERAGE: 1
+        COVERAGE: 0
       run: npm run all
     - name: Upload Coverage
       run: npx codecov
