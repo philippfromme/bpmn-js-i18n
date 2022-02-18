@@ -35,6 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.5",
     "@babel/plugin-transform-react-jsx": "^7.16.5",
+    "@bpmn-io/properties-panel": "^0.10.2",
     "babel-loader": "^8.2.3",
     "bpmn-js": "^8.5.0",
     "chai": "^4.3.4",
@@ -62,7 +63,6 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "^0.10.1",
     "bpmn-i18n-moddle": "^0.2.0",
     "bpmn-js-properties-panel": "^1.0.0-alpha.0",
     "iso-639-1": "^2.1.12",

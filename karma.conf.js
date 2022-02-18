@@ -54,12 +54,23 @@ module.exports = function(karma) {
       module: {
         rules: [
           {
-            test: /\.(css|bpmn)$/,
-            use: 'raw-loader'
+            test: /\.m?js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                plugins: [
+                  [ '@babel/plugin-transform-react-jsx', {
+                    'importSource': '@bpmn-io/properties-panel/preact',
+                    'runtime': 'automatic'
+                  } ]
+                ]
+              }
+            }
           },
           {
-            test: /\.png$/,
-            use: 'url-loader'
+            test: /\.(css|bpmn)$/,
+            use: 'raw-loader'
           }
         ].concat(
           coverage ? {
