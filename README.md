@@ -67,13 +67,13 @@ npm install
 Then, depending on your use-case you may run any of the following commands:
 
 ```sh
-# build the library and run all tests
+# build and test
 npm run all
 
-# spin up the example
+# start example
 npm start
 
-# run the full development setup
+# run tests in watch mode
 npm run dev
 ```
 

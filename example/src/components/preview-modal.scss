@@ -1,0 +1,40 @@
+@import '~@carbon/colors/scss/colors';
+
+.preview-modal {
+  .viewer-container {
+    position: relative;
+    flex-grow: 1;
+  
+    .bjs-powered-by {
+      right: 20px !important;
+      bottom: 20px !important;
+    }
+  }
+
+  .djs-hit {
+    display: none;
+  }
+
+  .preview-modal-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+  }
+
+  .preview-modal-language {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    width: 196px;
+  }
+  
+  // IBM Carbon overrides
+  .bx--modal-content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-right: 1rem !important;
+  }
+}

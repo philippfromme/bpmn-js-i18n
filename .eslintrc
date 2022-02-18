@@ -1,18 +1,14 @@
 {
-  "extends": [
-    "plugin:bpmn-io/es6",
-    "plugin:bpmn-io/jsx",
-  ],
   "env": {
     "browser": true,
     "es6": true
   },
+  "extends": [
+    "plugin:bpmn-io/es6",
+    "plugin:bpmn-io/jsx"
+  ],
   "rules": {
-    "indent": [ 2, 2, {
-      "VariableDeclarator": { "var": 2, "let": 2, "const": 3 },
-      "FunctionDeclaration": { "body": 1, "parameters": 2 },
-      "FunctionExpression": { "body": 1, "parameters": 2 },
-      "ignoredNodes": [ "TemplateLiteral > *" ]
-    } ]
+    "react/jsx-uses-react": "error",
+    "react/react-in-jsx-scope": "error"
   }
 }

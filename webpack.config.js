@@ -1,4 +1,6 @@
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
 
@@ -15,7 +17,20 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.m?js$/,
+          include: /example/,
           exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              plugins: [
+                [ '@babel/plugin-transform-react-jsx' ]
+              ]
+            }
+          }
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /example|node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
@@ -27,6 +42,14 @@ module.exports = (env, argv) => {
               ]
             }
           }
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader',
+          ],
         },
         {
           test: /\.bpmn$/,
@@ -48,6 +71,8 @@ module.exports = (env, argv) => {
 
   if (mode === 'production') {
     config.devtool = 'source-map';
+  } else {
+    config.plugins.push(new Dotenv());
   }
 
   return config;

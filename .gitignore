@@ -2,3 +2,4 @@ coverage
 example/dist
 node_modules
 tmp
+.env

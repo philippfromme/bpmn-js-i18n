@@ -8,12 +8,12 @@ import {
   inject
 } from 'test/TestHelper';
 
+import diagram from '../../fixtures/bpmn/diagram.bpmn';
+
 
 describe('viewer - Translator', function() {
 
   describe('basic', function() {
-
-    const diagram = require('./simple.bpmn');
 
     beforeEach(bootstrapViewer(diagram, {
       additionalModules: [

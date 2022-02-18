@@ -12,12 +12,12 @@ import {
   inject
 } from 'test/TestHelper';
 
+import diagram from '../../fixtures/bpmn/diagram.bpmn';
+
 
 describe('modeler - Translations', function() {
 
   describe('basic', function() {
-
-    const diagram = require('./simple.bpmn');
 
     beforeEach(bootstrapModeler(diagram, {
       additionalModules: [
@@ -30,59 +30,98 @@ describe('modeler - Translations', function() {
     }));
 
 
-    it('should get translations JSON', inject(function(translations) {
+    it('should get all languages', inject(function(translations) {
 
       // when
-      const json = translations.getTranslationsJSON();
+      const languages = translations.getLanguages();
 
       // then
-      expect(json).to.eql({
-        'SubProcess_0gc6evc': 'Cash Withdrawal',
-        'Task_1upmjgh': 'Prepare Cash',
-        'Task_128fg2b': 'Charge Account',
-        'Task_16oagb5': 'Issue Money',
-        'StartEvent_0j9yk1o': 'Cash Amount Selected',
-        'StartEvent_0j9yk1o_label': 'Cash Amount Selected',
-        'EndEvent_1e8gne7': 'Cash Issued',
-        'EndEvent_1e8gne7_label': 'Cash Issued',
-        'StartEvent_1': 'ATM Transaction Needed',
-        'StartEvent_1_label': 'ATM Transaction Needed',
-        'IntermediateThrowEvent_02yoqsl': 'Cash Withdrawn',
-        'IntermediateThrowEvent_02yoqsl_label': 'Cash Withdrawn',
-        'Task_1xu25p5': 'Check For Further Interactions',
-        'IntermediateCatchEvent_09tc0wh': 'New Interaction Requested',
-        'IntermediateCatchEvent_09tc0wh_label': 'New Interaction Requested',
-        'IntermediateCatchEvent_087fl8m': 'No Further Interaction Requested',
-        'IntermediateCatchEvent_087fl8m_label': 'No Further Interaction Requested',
-        'IntermediateCatchEvent_12qf66u': '30 seconds elapsed',
-        'IntermediateCatchEvent_12qf66u_label': '30 seconds elapsed',
-        'Task_0e0mu6c': 'Return Card',
-        'EndEvent_0swhjpo': 'ATM Transaction Finsihed',
-        'EndEvent_0swhjpo_label': 'ATM Transaction Finsihed',
-        'Task_026c0id': 'Insert Card',
-        'Task_0p47z7h': 'Select Amount',
-        'ExclusiveGateway_13kuced': 'Selected Interaction?',
-        'ExclusiveGateway_13kuced_label': 'Selected Interaction?',
-        'Task_1ept7kl': 'Account Balance Information',
-        'StartEvent_13lmuqn': 'Account Balance Requested',
-        'StartEvent_13lmuqn_label': 'Account Balance Requested',
-        'Task_180wh31': 'Display Balance',
-        'IntermediateThrowEvent_10vhtou': 'Balance checked',
-        'IntermediateThrowEvent_10vhtou_label': 'Balance checked',
-        'EndEvent_1qnlj46': 'Account Balance displayed',
-        'EndEvent_1qnlj46_label': 'Account Balance displayed',
-        'Task_0po6mda': 'Select Interaction',
-        'Task_1u7pqoy': 'Timeout',
-        'BoundaryEvent_Error': 'Error',
-        'BoundaryEvent_Error_label': 'Error',
-        'BoundaryEvent_07intkn': 'Message received',
-        'BoundaryEvent_07intkn_label': 'Message received',
-        'SequenceFlow_1qdqk69': 'Cash Withdrawal',
-        'SequenceFlow_1qdqk69_label': 'Cash Withdrawal',
-        'SequenceFlow_091wldx': 'Account Balance',
-        'SequenceFlow_091wldx_label': 'Account Balance'
-      });
+      expect(languages).to.eql([ 'en', 'de' ]);
     }));
+
+
+    describe('#getTranslations', function() {
+
+      it('should get translations JSON (default language)', inject(function(translations) {
+
+        // when
+        const translationsJSON = translations.getTranslationsJSON();
+
+        // then
+        expect(translationsJSON).to.eql({
+          'SubProcess_0gc6evc': 'Cash Withdrawal',
+          'Task_1upmjgh': 'Prepare Cash',
+          'Task_128fg2b': 'Charge Account',
+          'Task_16oagb5': 'Issue Money',
+          'StartEvent_0j9yk1o': 'Cash Amount Selected',
+          'EndEvent_1e8gne7': 'Cash Issued',
+          'StartEvent_1': 'ATM Transaction Needed',
+          'IntermediateThrowEvent_02yoqsl': 'Cash Withdrawn',
+          'Task_1xu25p5': 'Check For Further Interactions',
+          'IntermediateCatchEvent_09tc0wh': 'New Interaction Requested',
+          'IntermediateCatchEvent_087fl8m': 'No Further Interaction Requested',
+          'IntermediateCatchEvent_12qf66u': '30 seconds elapsed',
+          'Task_0e0mu6c': 'Return Card',
+          'EndEvent_0swhjpo': 'ATM Transaction Finsihed',
+          'UserTask_1': 'Insert Card',
+          'Task_0p47z7h': 'Select Amount',
+          'ExclusiveGateway_13kuced': 'Selected Interaction?',
+          'Task_1ept7kl': 'Account Balance Information',
+          'StartEvent_13lmuqn': 'Account Balance Requested',
+          'Task_180wh31': 'Display Balance',
+          'IntermediateThrowEvent_10vhtou': 'Balance checked',
+          'EndEvent_1qnlj46': 'Account Balance displayed',
+          'Task_0po6mda': 'Select Interaction',
+          'Task_1u7pqoy': 'Timeout',
+          'BoundaryEvent_Error': 'Error',
+          'BoundaryEvent_07intkn': 'Message received',
+          'SequenceFlow_1qdqk69': 'Cash Withdrawal',
+          'SequenceFlow_091wldx': 'Account Balance',
+        });
+      }));
+
+
+      it('should get translations (de)', inject(function(translations) {
+
+        // when
+        const language = 'de';
+
+        const translationsJSON = translations.getTranslationsJSON(language);
+
+        // then
+        expect(translationsJSON).to.eql({
+          'SubProcess_0gc6evc': 'Cash Withdrawal',
+          'Task_1upmjgh': 'Prepare Cash',
+          'Task_128fg2b': 'Charge Account',
+          'Task_16oagb5': 'Issue Money',
+          'StartEvent_0j9yk1o': 'Cash Amount Selected',
+          'EndEvent_1e8gne7': 'Cash Issued',
+          'StartEvent_1': 'ATM-Transaktion erforderlich',
+          'IntermediateThrowEvent_02yoqsl': 'Cash Withdrawn',
+          'Task_1xu25p5': 'Check For Further Interactions',
+          'IntermediateCatchEvent_09tc0wh': 'New Interaction Requested',
+          'IntermediateCatchEvent_087fl8m': 'No Further Interaction Requested',
+          'IntermediateCatchEvent_12qf66u': '30 seconds elapsed',
+          'Task_0e0mu6c': 'Return Card',
+          'EndEvent_0swhjpo': 'ATM Transaction Finsihed',
+          'UserTask_1': 'Karte einschieben',
+          'Task_0p47z7h': 'Select Amount',
+          'ExclusiveGateway_13kuced': 'Selected Interaction?',
+          'Task_1ept7kl': 'Account Balance Information',
+          'StartEvent_13lmuqn': 'Account Balance Requested',
+          'Task_180wh31': 'Display Balance',
+          'IntermediateThrowEvent_10vhtou': 'Balance checked',
+          'EndEvent_1qnlj46': 'Account Balance displayed',
+          'Task_0po6mda': 'Select Interaction',
+          'Task_1u7pqoy': 'Timeout',
+          'BoundaryEvent_Error': 'Error',
+          'BoundaryEvent_07intkn': 'Message received',
+          'SequenceFlow_1qdqk69': 'Cash Withdrawal',
+          'SequenceFlow_091wldx': 'Account Balance',
+        });
+      }));
+
+    });
 
 
     describe('#setTranslations', function() {
@@ -177,6 +216,7 @@ describe('modeler - Translations', function() {
           });
         }));
 
+
         it('do', function() {
 
           // then
@@ -242,6 +282,75 @@ describe('modeler - Translations', function() {
       ));
 
     });
+
+
+    describe('#setDefaultLanguage', function() {
+
+      const language = 'de';
+
+      beforeEach(inject(function(translations) {
+
+        // assume
+        const defaultLanguage = translations.getDefaultLanguage();
+
+        expect(defaultLanguage).to.equal('en');
+
+        // when
+        translations.setDefaultLanguage(language);
+      }));
+
+
+      it('do', inject(function(translations) {
+
+        // then
+        const defaultLanguage = translations.getDefaultLanguage();
+
+        expect(defaultLanguage).to.equal(language);
+      }));
+
+
+      it('undo', inject(function(commandStack, translations) {
+
+        // when
+        commandStack.undo();
+
+        // then
+        const defaultLanguage = translations.getDefaultLanguage();
+
+        expect(defaultLanguage).to.equal('en');
+      }));
+
+
+      it('redo', inject(function(commandStack, translations) {
+
+        // when
+        commandStack.undo();
+        commandStack.redo();
+
+        // then
+        const defaultLanguage = translations.getDefaultLanguage();
+
+        expect(defaultLanguage).to.equal(language);
+      }));
+
+    });
+
+
+    it('should not set default language if language is not a valid ISO-631-1 language code', inject(
+      function(translations) {
+
+        // given
+        const language = 'foo';
+
+        // when
+        translations.setDefaultLanguage(language);
+
+        // then
+        const defaultLanguage = translations.getDefaultLanguage();
+
+        expect(defaultLanguage).to.equal('en');
+      }
+    ));
 
   });
 
