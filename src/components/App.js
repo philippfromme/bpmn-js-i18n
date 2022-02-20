@@ -20,7 +20,7 @@ import initialDiagram from '../../resources/diagram.bpmn';
 
 import './app.scss';
 
-const DEEPL_AUTH_KEY = process.env.DEEPL_AUTH_KEY;
+const DEEPL_AUTH_KEY = process.env.DEEPL_AUTH_KEY === 'false' ? null : process.env.DEEPL_AUTH_KEY;
 
 export default function App() {
   const [ diagram, _ ] = useState(initialDiagram);
