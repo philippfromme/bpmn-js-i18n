@@ -1,5 +1,5 @@
 import ModelerModule from 'lib/modeler';
-import Modeler from 'bpmn-js/lib/modeler';
+import Modeler from 'bpmn-js/lib/Modeler';
 
 import BpmnI18nSchema from 'bpmn-i18n-moddle/resources/bpmn-i18n.json';
 
