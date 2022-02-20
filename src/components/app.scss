@@ -1,0 +1,47 @@
+@import '~@carbon/colors/scss/colors';
+
+.modeler-container {
+  position: relative;
+  flex-grow: 1;
+
+  .bjs-powered-by {
+    right: 20px !important;
+    bottom: 20px !important;
+  }
+}
+
+.djs-palette {
+  background: $carbon--gray-10;
+  border: none;
+  border-radius: 0;
+
+  .separator {
+    margin: 0;
+    border-bottom-color: $carbon--gray-50;
+  }
+}
+
+.properties-panel-container {
+  background: #fff;
+  border-left: solid 1px #ccc;
+  width: 300px;
+}
+
+.bio-properties-panel {
+  --font-family: 'IBM Plex Sans', sans-serif;
+  --font-family-monospace: 'IBM Plex Sans', sans-serif;
+}
+
+.app-buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.app-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}

@@ -1,0 +1,37 @@
+.translations-modal {
+
+  .translations-modal-select-default-language,
+  .translations-modal-select-language,
+  .translations-modal-switch {
+    margin-bottom: 1rem;
+  }
+
+  .translations-modal-buttons {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #use-deepl {
+    margin-bottom: 1rem;
+  }
+
+  .deepl-loading {
+    width: auto;
+    padding-right: 1rem;
+  }
+
+  // IBM Carbon overrides
+  .bx--btn {
+    white-space: nowrap;
+  }
+
+  .bx--modal-content {
+    // margin-bottom: 1rem;
+    // padding-right: 1rem !important;
+  }
+
+  .bx--btn-set .bx--btn {
+    width: auto;
+    max-width: none;
+}
+}
