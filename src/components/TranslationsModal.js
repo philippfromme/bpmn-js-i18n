@@ -26,7 +26,7 @@ import ISO from 'iso-639-1';
 
 import './translations-modal.scss';
 
-const DEEPL_AUTH_KEY = process && process.env.DEEPL_AUTH_KEY;
+const DEEPL_AUTH_KEY = global.process && global.process.env.DEEPL_AUTH_KEY;
 
 export default function TranslationsModal(props) {
   const {
