@@ -26,23 +26,22 @@ import ISO from 'iso-639-1';
 
 import './translations-modal.scss';
 
-const DEEPL_AUTH_KEY = global.process && global.process.env.DEEPL_AUTH_KEY;
-
 export default function TranslationsModal(props) {
   const {
     modeler,
-    onClose
+    onClose,
+    deeplAuthenticationKey,
+    setDeeplAuthenticationKey
   } = props;
 
   const [ translationsJSON, setTranslationsJSON ] = useState(modeler.get('translations').getTranslationsJSON());
   const [ hasTranslationsForLanguage, setHasTranslationsForLanguage ] = useState(true);
 
   const [ useDeepl, setUseDeepl ] = useState(false);
-  const [ deeplAuthenticationKey, _ ] = useState(DEEPL_AUTH_KEY);
   const [ deeplSupportedLanguages, setDeeplSupportedLanguages ] = useState([]);
 
   const [ fetching, setFetching ] = useState(false);
-  const [ __, setFetchedTranslations ] = useState();
+  const [ _, setFetchedTranslations ] = useState();
 
   const [ selectedLanguage, setSelectedLanguage ] = useState(modeler.get('translations').getDefaultLanguage());
 
@@ -207,7 +206,13 @@ export default function TranslationsModal(props) {
               selectedLanguage !== defaultLanguage && <Checkbox labelText="Use DeepL" id="use-deepl" value={ useDeepl } onChange={ (value) => setUseDeepl(value) } />
             }
             {
-              useDeepl && selectedLanguage !== defaultLanguage && <TextInput.PasswordInput id="deepl-authentication-key" labelText="Authentication Key" value={ deeplAuthenticationKey } />
+              useDeepl && selectedLanguage !== defaultLanguage && (
+                <TextInput.PasswordInput
+                  id="deepl-authentication-key"
+                  labelText="Authentication Key"
+                  value={ deeplAuthenticationKey }
+                  onInput={ ({ target }) => setDeeplAuthenticationKey(target.value) } />
+              )
             }
             <ButtonSet className="translations-modal-buttons">
               {

@@ -20,6 +20,8 @@ import initialDiagram from '../../resources/diagram.bpmn';
 
 import './app.scss';
 
+const DEEPL_AUTH_KEY = process.env.DEEPL_AUTH_KEY;
+
 export default function App() {
   const [ diagram, _ ] = useState(initialDiagram);
   const [ translationsModalOpen, setTranslationsModalOpen ] = useState(false);
@@ -29,6 +31,8 @@ export default function App() {
   const propertiesPanelParentRef = useRef();
 
   const [ modeler, setModeler ] = useState();
+
+  const [ deeplAuthenticationKey, setDeeplAuthenticationKey ] = useState(DEEPL_AUTH_KEY);
 
   useEffect(() => {
     (async () => {
@@ -66,7 +70,13 @@ export default function App() {
       </div>
       <div className="properties-panel-container" ref={ propertiesPanelParentRef }></div>
       {
-        translationsModalOpen && <TranslationsModal modeler={ modeler } onClose={ () => setTranslationsModalOpen(false) } />
+        translationsModalOpen && (
+          <TranslationsModal
+            modeler={ modeler }
+            onClose={ () => setTranslationsModalOpen(false) }
+            deeplAuthenticationKey={ deeplAuthenticationKey }
+            setDeeplAuthenticationKey={ setDeeplAuthenticationKey } />
+        )
       }
       {
         previewModalOpen && <PreviewModal modeler={ modeler } onClose={ () => setPreviewModalOpen(false) } />
