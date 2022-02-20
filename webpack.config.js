@@ -2,6 +2,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const Dotenv = require('dotenv-webpack');
 
+const webpack = require('webpack');
+
 module.exports = (env, argv) => {
 
   const mode = argv.mode || 'development';
@@ -71,6 +73,9 @@ module.exports = (env, argv) => {
 
   if (mode === 'production') {
     config.devtool = 'source-map';
+    config.plugins.push(new webpack.DefinePlugin({
+      'process.env.DEEPL_AUTH_KEY': JSON.stringify(false)
+    }));
   } else {
     config.plugins.push(new Dotenv());
   }
