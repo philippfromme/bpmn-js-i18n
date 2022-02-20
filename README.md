@@ -1,6 +1,6 @@
 # bpmn-js-i18n 🌎
 
-[![CI](https://github.com/bpmn-io/bpmn-js-i18n/workflows/CI/badge.svg)](https://github.com/bpmn-io/bpmn-js-i18n/actions?query=workflow%3ACI)
+[![CI](https://github.com/philippfromme/bpmn-js-i18n/workflows/CI/badge.svg)](https://github.com/philippfromme/bpmn-js-i18n/actions?query=workflow%3ACI)
 
 A bpmn-js extension for translating BPMN diagrams using the [BPMN 2.0 extension for internationalization (I18n)](https://github.com/bpmn-miwg/bpmn-i18n).
 
@@ -12,7 +12,7 @@ A bpmn-js extension for translating BPMN diagrams using the [BPMN 2.0 extension 
 Install via [npm](http://npmjs.com/).
 
 ```
-npm install bpmn-js-i18n
+npm install @philippfromme/bpmn-js-i18n
 ```
 
 Add as additional module to [bpmn-js](https://github.com/bpmn-io/bpmn-js).
